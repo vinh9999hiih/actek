@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Stress Test Tool</title>
+    <title>NGL Message Sender</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Network Stress Test Tool</h1>
-        <form>
+        <h1>NGL Message Sender</h1>
+        <form id="messageForm">
             <div class="form-group">
-                <label for="url">URL or IP:</label>
-                <input type="text" id="url" name="url" placeholder="Enter URL or IP">
+                <label for="username">Tên người dùng:</label>
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="form-group">
-                <label for="time">Time (in seconds):</label>
-                <input type="number" id="time" name="time" placeholder="Enter time in seconds">
+                <label for="message">Tin nhắn:</label>
+                <input type="text" id="message" name="message" required>
             </div>
             <div class="form-group">
-                <label for="attacks">Number of Requests:</label>
-                <input type="number" id="attacks" name="attacks" placeholder="Enter number of requests">
+                <label for="count">Số lượng:</label>
+                <input type="number" id="count" name="count" required>
             </div>
-            <div class="form-group">
-                <label for="method">Method:</label>
-                <input type="text" id="method" name="method" placeholder="Enter method (e.g., HTTP)">
+            <div class="button-group">
+                <button type="button" id="startButton" class="btn">Bắt đầu</button>
+                <button type="button" id="stopButton" class="btn btn-stop" disabled>Dừng</button>
             </div>
-            <button type="submit" class="btn">Start Test</button>
         </form>
+
+        <div id="results" class="results">
+            <h2>Kết quả:</h2>
+            <p>Đã gửi: <span id="sentCount">0</span>/<span id="totalCount">0</span></p>
+            <div id="statusMessage" class="status-message"></div>
+            <ul id="resultList"></ul>
+        </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
