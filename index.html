@@ -1,33 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network Stress Test Tool</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Network Stress Test Tool</h1>
-        <form>
-            <div class="form-group">
-                <label for="url">URL or IP:</label>
-                <input type="text" id="url" name="url" placeholder="Enter URL or IP">
-            </div>
-            <div class="form-group">
-                <label for="time">Time (in seconds):</label>
-                <input type="number" id="time" name="time" placeholder="Enter time in seconds">
-            </div>
-            <div class="form-group">
-                <label for="attacks">Number of Requests:</label>
-                <input type="number" id="attacks" name="attacks" placeholder="Enter number of requests">
-            </div>
-            <div class="form-group">
-                <label for="method">Method:</label>
-                <input type="text" id="method" name="method" placeholder="Enter method (e.g., HTTP)">
-            </div>
-            <button type="submit" class="btn">Start Test</button>
-        </form>
-    </div>
-</body>
-</html>
+def ngl():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    display_logo()
+    display_admin_info()
+
+    time.sleep(2)  # Chờ 2 giây cho hiệu ứng anim
+
+    nglusername = input(Colorate.Vertical(Colors.blue_to_purple, "Tên người dùng: "))
+    message = input(Colorate.Vertical(Colors.blue_to_purple, "Tin nhắn: "))
+    Count = int(input(Colorate.Vertical(Colors.blue_to_purple, "Số lượng: ")))
+
+    print(Colorate.Vertical(Colors.green_to_blue, "**********************************************************"))
+
+    value = 0
+    notsend = 0
+    while value < Count:
+        headers = {
+            'Host': 'ngl.link',
+            'sec-ch-ua': '"Google Chrome";v="113", "Chromium";v="113", "Not-A.Brand";v="24"',
+            'accept': '*/*',
+            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'x-requested-with': 'XMLHttpRequest',
+            'sec-ch-ua-mobile': '?0',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
+            'sec-ch-ua-platform': '"Windows"',
+            'origin': 'https://ngl.link',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': f'https://ngl.link/{nglusername}',
+            'accept-language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+        }
+
+        data = {
+            'username': nglusername,
+            'question': message,
+            'deviceId': '0',
+            'gameSlug': '',
+            'referrer': '',
+        }
+
+        response = requests.post('https://ngl.link/api/submit', headers=headers, data=data)
+        if response.status_code == 200:
+            notsend = 0
+            value += 1
+            print(Colorate.Vertical(Colors.green_to_blue, f"[+] Gửi thành công! Số lần đã gửi: {value}"))
+
+            # Hiệu ứng chờ bằng các ký tự đặc biệt và màu sắc
+            print(Colorate.Vertical(Colors.green_to_yellow, "Đang chờ "), end="", flush=True)
+            for _ in range(5):  # Chạy hiệu ứng 5 giây (tùy chỉnh theo nhu cầu)
+                print(".", end="", flush=True)
+                time.sleep(0.3)  # Chờ 0.3 giây
+            print("")  # In ra dòng mới sau khi kết thúc hiệu ứng chờ
+
+        else:
+            notsend += 1
+            print(Colorate.Vertical(Colors.red_to_yellow, f"[X] Không gửi được"))
+        
+        if notsend == 10:
+            print(Colorate.Vertical(Colors.red_to_yellow, "[!] Chờ 5 giây"))
+            time.sleep(5)
+            notsend = 0
