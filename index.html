@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGL Message Sender</title>
+    <title>Network Stress Test Tool</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>NGL Message Sender</h1>
-        <form id="messageForm">
+        <h1>Network Stress Test Tool</h1>
+        <form>
             <div class="form-group">
-                <label for="username">Tên người dùng:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="url">URL or IP:</label>
+                <input type="text" id="url" name="url" placeholder="Enter URL or IP">
             </div>
             <div class="form-group">
-                <label for="message">Tin nhắn:</label>
-                <input type="text" id="message" name="message" required>
+                <label for="time">Time (in seconds):</label>
+                <input type="number" id="time" name="time" placeholder="Enter time in seconds">
             </div>
             <div class="form-group">
-                <label for="count">Số lượng:</label>
-                <input type="number" id="count" name="count" required>
+                <label for="attacks">Number of Requests:</label>
+                <input type="number" id="attacks" name="attacks" placeholder="Enter number of requests">
             </div>
-            <button type="submit" class="btn">Gửi</button>
+            <div class="form-group">
+                <label for="method">Method:</label>
+                <input type="text" id="method" name="method" placeholder="Enter method (e.g., HTTP)">
+            </div>
+            <button type="submit" class="btn">Start Test</button>
         </form>
-
-        <div id="results" class="results">
-            <h2>Kết quả:</h2>
-            <ul id="resultList"></ul>
-        </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
